@@ -17,18 +17,6 @@ import numpy as np
 #import matplotlib.pyplot as plt
 from graphe_from_tache import *
 
-def random_values(n,limite_max):
-    l_values=[]
-    r=0
-    p=0
-    d=0
-    for i in range(n):
-        d=random.randint(1, limite_max)
-        p=random.randint(1, d)
-        r=random.randint(0, d-p)
-        l_values.append((r,p,d))
-    print(l_values)
-    return l_values
 
 def tri_liste(li):
     ordre=[0]*len(li)
