@@ -9,7 +9,7 @@ def print_tache(li_tache):
         ri,pi,di = li_tache[i]
         print("tache :",i,"ri=",ri," di=", di ,"pi=", pi)    
 
-def tache_max_pathwidth(pathwith_max :int, nb_tache_max : int, deadline = 100,slack = 100) :
+def tache_max_pathwidth(nb_tache_max : int, pathwith_max = 4, deadline = 100,slack = 100) :
     #initialisation
     
     li_date = {}
@@ -233,10 +233,35 @@ def get_details(li_tache):
     return pathwidth_max,slack_max
 
 
-print("controlé :")
-lt = tache_max_pathwidth(100,200,slack=12,deadline=1000)
-get_details(lt)
+#print("controlé :")
+#lt = tache_max_pathwidth(100,200,slack=12,deadline=1000)
+#get_details(lt)
 #print_tache(lt)
 #print("random :")
 #lt2 = random_values(50,100)
 #get_details(lt2)
+
+
+def make_batch(taille : int,range_nb_tache = (10,25),range_deadline = (20,140),range_patwith = (4,4), range_slack=(100,100)):
+    li_li_tache = []
+    for i in range(taille):
+        pd,pf = range_patwith
+        pathwidth = random.randint(pd,pf)
+        sd,sf = range_slack
+        slack = random.randint(sd,sf)
+        td,tf = range_nb_tache
+        nb_tache = random.randint(td,tf)
+        dd,df = range_deadline
+        deadline = random.randint(dd,df)
+        
+        li_li_tache = [tache_max_pathwidth(nb_tache,pathwith_max=pathwidth,deadline=deadline,slack=slack)]+li_li_tache
+        
+    return li_li_tache
+
+li = make_batch(4)
+
+def fun(li,fct):
+    for i in li:
+        fct(i)
+        
+fun(li,get_details)
