@@ -224,13 +224,13 @@ def get_details(li_tache):
     #slack_moy4/=nb_elem_slack4
     #slack_moy5/=nb_elem_slack5
 
-    print("pathwidth = ",pathwidth_max)
-    print("slack = ",slack_max)
-    print("pathwidth moyen",pathwidth_moy)
-    print("slack moyen = ",slack_moy)
-    print("nb taches :",len(li_tache))
+    #print("pathwidth = ",pathwidth_max)
+    #print("slack = ",slack_max)
+    #print("pathwidth moyen",pathwidth_moy)
+    #print("slack moyen = ",slack_moy)
+    #print("nb taches :",len(li_tache))
 
-    return pathwidth_max,slack_max
+    return len(li_tache),pathwidth_max,slack_max
 
 
 #print("controlé :")
@@ -258,10 +258,10 @@ def make_batch(taille : int,range_nb_tache = (10,25),range_deadline = (20,140),r
         
     return li_li_tache
 
-li = make_batch(4)
+#li = make_batch(4)
 
 def fun(li,fct):
     for i in li:
         fct(i)
         
-fun(li,get_details)
+#fun(li,get_details)

@@ -21,7 +21,7 @@ on retourne une structure de données (G,s,t) qui correspond à un graphe de flo
 
 # : list[tuple]
 
-def graphe_from_taches(li,m :int,deadline = True) :
+def graphe_from_taches(li,m :int,deadline = True,print=True) :
     G = nx.Graph() # graphe de flot retourné
     i = 0  # état de depart
     
@@ -78,34 +78,34 @@ def graphe_from_taches(li,m :int,deadline = True) :
             G.add_edge(tache_courante,(nb_taches+k+1),capacity=(l_date_trie[k+1]-l_date_trie[k])) #on ajoute l'arête de tâche courante a l'intervalle courant et de poids durée de l'intervalle courant
             k += 1
         tache_courante += 1
-
-    #on définit les positions des noeuds
-    G.nodes[0]['pos'] = (0,0)
-    for i in range(nb_taches):
-        G.nodes[1+i]['pos'] = (2,nb_taches-i*2-1)
-    for i in range(len(l_date_trie)-1):
-        G.nodes[1+nb_taches+i]['pos'] = (5,(len(l_date_trie)-1)-i*2-1)
-    G.nodes[puit]['pos'] = (7,0)
-    # #source : http://avinashu.com/tutorial/pythontutorialnew/NetworkXBasics.html
-    node_pos=nx.get_node_attributes(G,'pos')
-    # The edge capacitys of each arcs are stored in a dictionary
-    arc_capacity=nx.get_edge_attributes(G,'capacity')
-    # If the nodes is in the shortest path, set it to red, else set it to white color
-    node_col = 'white'
-    # If the edge is in the shortest path set it to red, else set it to white color
-    edge_col = 'black'
-    # Draw the nodes
-    nx.draw_networkx(G, node_pos,node_color= node_col, node_size=450)
-    # Draw the node labels
-    # nx.draw_networkx_labels(G, node_pos,node_color= node_col)
-    # Draw the edges
-    nx.draw_networkx_edges(G, node_pos,edge_color= edge_col)
-    # Draw the edge labels
-    nx.draw_networkx_edge_labels(G, node_pos, edge_labels=arc_capacity,label_pos=0.7)
-    # Remove the axis
-    plt.axis('off')
-    # Show the plot
-    plt.show()
+    if(print):
+        #on définit les positions des noeuds
+        G.nodes[0]['pos'] = (0,0)
+        for i in range(nb_taches):
+            G.nodes[1+i]['pos'] = (2,nb_taches-i*2-1)
+        for i in range(len(l_date_trie)-1):
+            G.nodes[1+nb_taches+i]['pos'] = (5,(len(l_date_trie)-1)-i*2-1)
+        G.nodes[puit]['pos'] = (7,0)
+        # #source : http://avinashu.com/tutorial/pythontutorialnew/NetworkXBasics.html
+        node_pos=nx.get_node_attributes(G,'pos')
+        # The edge capacitys of each arcs are stored in a dictionary
+        arc_capacity=nx.get_edge_attributes(G,'capacity')
+        # If the nodes is in the shortest path, set it to red, else set it to white color
+        node_col = 'white'
+        # If the edge is in the shortest path set it to red, else set it to white color
+        edge_col = 'black'
+        # Draw the nodes
+        nx.draw_networkx(G, node_pos,node_color= node_col, node_size=450)
+        # Draw the node labels
+        # nx.draw_networkx_labels(G, node_pos,node_color= node_col)
+        # Draw the edges
+        nx.draw_networkx_edges(G, node_pos,edge_color= edge_col)
+        # Draw the edge labels
+        nx.draw_networkx_edge_labels(G, node_pos, edge_labels=arc_capacity,label_pos=0.7)
+        # Remove the axis
+        plt.axis('off')
+        # Show the plot
+        plt.show()
     return (G,0,puit)
 
 #test = graphe_from_taches([(0,2,2),(0,3,4),(2,2,4)],2)
